@@ -1,13 +1,13 @@
 #global _with_gen4asm 1
 
 Name:		libva-intel-driver
-Version:	1.6.2
+Version:	1.7.0
 Release:	1%{?dist}
 Summary:	HW video decode support for Intel integrated graphics
 Group:		System Environment/Libraries
 License:	MIT and EPL
 URL:		http://freedesktop.org/wiki/Software/vaapi
-Source0:	http://www.freedesktop.org/software/vaapi/releases/%{name}/%{name}-%{version}.tar.bz2
+Source:		http://www.freedesktop.org/software/vaapi/releases/libva-intel-driver/%{name}-%{version}.tar.bz2
 
 ExclusiveArch:	%{ix86} x86_64 ia64
 
@@ -67,6 +67,10 @@ gendiff . .prebuilt
 
 
 %changelog
+
+* Wed Apr 27 2016 David Vásquez <davidjeremias82 AT gmail DOT com> - 1.7.0-1
+- Updated to 1.7.0
+
 * Thu Dec 17 2015 Nicolas Chauvet <kwizart@gmail.com> - 1.6.2-1
 - Update to 1.6.2
 
