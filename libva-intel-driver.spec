@@ -61,6 +61,10 @@ gendiff . .prebuilt
 }
 
 
+%post -p /sbin/ldconfig
+
+%postun -p /sbin/ldconfig
+
 %files
 %doc AUTHORS COPYING NEWS README
 %{_libdir}/dri/i965_drv_video.so
