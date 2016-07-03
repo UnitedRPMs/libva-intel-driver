@@ -1,7 +1,7 @@
 #global _with_gen4asm 1
 
 Name:		libva-intel-driver
-Version:	1.7.0
+Version:	1.7.1
 Release:	1%{?dist}
 Summary:	HW video decode support for Intel integrated graphics
 Group:		System Environment/Libraries
@@ -22,11 +22,13 @@ BuildRequires:	libpciaccess-devel
 BuildRequires:	libva-devel >= 1.3.0
 BuildRequires:	mesa-libGL-devel
 BuildRequires:	mesa-libEGL-devel
-%{!?_without_wayland:
+BuildRequires:  python-devel
+BuildRequires:  python3-devel
+#%{!?_without_wayland:
 BuildRequires:  wayland-devel
 BuildRequires:  pkgconfig(wayland-client) >= 1
 BuildRequires:  pkgconfig(wayland-scanner) >= 1
-}
+#}
 
 
 %description
@@ -61,16 +63,14 @@ gendiff . .prebuilt
 }
 
 
-%post -p /sbin/ldconfig
-
-%postun -p /sbin/ldconfig
-
 %files
 %doc AUTHORS COPYING NEWS README
 %{_libdir}/dri/i965_drv_video.so
 
 
 %changelog
+* Sun Jul 03 2016 Pavlo Rudyi <paulcarroty at riseup.net > - 1.7.1-1
+- Updated to 1.7.1
 
 * Wed Apr 27 2016 David Vásquez <davidjeremias82 AT gmail DOT com> - 1.7.0-1
 - Updated to 1.7.0
