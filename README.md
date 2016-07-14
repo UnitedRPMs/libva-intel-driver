@@ -2,6 +2,6 @@
 
 Summary:  HW video decode support for Intel integrated graphics
 	
-Version:	1.7.0
+Version:	1.7.1
  
 License:	MIT & EPL
