@@ -1,8 +1,8 @@
 #global _with_gen4asm 1
 
 Name:		libva-intel-driver
-Version:	1.7.1
-Release:	2%{?dist}
+Version:	1.7.2
+Release:	1%{?dist}
 Summary:	HW video decode support for Intel integrated graphics
 Group:		System Environment/Libraries
 License:	MIT and EPL
@@ -19,16 +19,15 @@ BuildRequires:	libXext-devel
 BuildRequires:	libXfixes-devel
 BuildRequires:	libdrm-devel >= 2.4.23
 BuildRequires:	libpciaccess-devel
-BuildRequires:	libva-devel >= 1.3.0
+BuildRequires:  libva-devel
 BuildRequires:	mesa-libGL-devel
 BuildRequires:	mesa-libEGL-devel
 BuildRequires:  python-devel
 BuildRequires:  python3-devel
-#%{!?_without_wayland:
 BuildRequires:  wayland-devel
 BuildRequires:  pkgconfig(wayland-client) >= 1
 BuildRequires:  pkgconfig(wayland-scanner) >= 1
-#}
+
 
 
 %description
@@ -69,6 +68,9 @@ gendiff . .prebuilt
 
 
 %changelog
+
+* Tue Sep 06 2016 Pavlo Rudyi <paulcarroty at riseup.net > - 1.7.2-1
+- Updated to 1.7.2
 
 * Fri Jul 08 2016 David Vásquez <davidjeremias82 AT gmail DOT com> - 1.7.1-2
 - Massive rebuild
