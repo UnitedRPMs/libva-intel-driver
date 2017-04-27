@@ -23,11 +23,11 @@ build:
 #    - /urpms -g UnitedRPMs/libva-intel-driver -s libva-intel-driver.spec -t fedora-25-x86_64
 
 # the build scripts
-script:
-- docker run --privileged=true --cap-add=SYS_ADMIN -v $(pwd):/root/enjoy/ davidva/unibuild /bin/sh /urpms -g UnitedRPMs/libva-intel-driver -s libva-intel-driver.spec -t fedora-25-i386 -c true    
+#script:
+#- docker run --privileged=true --cap-add=SYS_ADMIN -v $(pwd):/root/enjoy/ davidva/unibuild /bin/sh /urpms -g UnitedRPMs/libva-intel-driver -s libva-intel-driver.spec -t fedora-25-i386 -c true    
 
-notifications:
-email: davidva@tutanota.com
+#notifications:
+#email: davidva@tutanota.com
 # slack: unitedrpms:lzDykHTpajKrgmGz9NkrO1Hj
 
 
