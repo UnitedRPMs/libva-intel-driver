@@ -1,33 +1,34 @@
 #global _with_gen4asm 1
 
 Name:		libva-intel-driver
-Version:	1.7.3
-Release:	2%{?dist}
+Version:	1.8.1
+Release:	1%{?dist}
 Summary:	HW video decode support for Intel integrated graphics
-Group:		System Environment/Libraries
 License:	MIT and EPL
-URL:		http://freedesktop.org/wiki/Software/vaapi
-Source:		http://www.freedesktop.org/software/vaapi/releases/libva-intel-driver/%{name}-%{version}.tar.bz2
+URL:		https://01.org/linuxmedia
+Source0:	https://github.com/01org/intel-vaapi-driver/archive/%{version}.tar.gz#/%{name}-%{version}.tar.gz
 
 ExclusiveArch:	%{ix86} x86_64 ia64
 
-#BuildRequires:	libtool
+BuildRequires:	libtool
+
+#Renamed when moved to 01.org
+Provides: intel-vaapi-driver = %{version}-%{release}
 
 %{?_with_gen4asm:BuildRequires: pkgconfig(intel-gen4asm)}
 BuildRequires:	pkgconfig(libudev)
 BuildRequires:	libXext-devel
 BuildRequires:	libXfixes-devel
-BuildRequires:	libdrm-devel
+BuildRequires:	libdrm-devel >= 2.4.23
 BuildRequires:	libpciaccess-devel
-BuildRequires:  libva-devel
+BuildRequires:  pkgconfig(libva) >= 0.39.4
 BuildRequires:	mesa-libGL-devel
 BuildRequires:	mesa-libEGL-devel
-BuildRequires:  python-devel
-BuildRequires:  python3-devel
+%{!?_without_wayland:
 BuildRequires:  wayland-devel
 BuildRequires:  pkgconfig(wayland-client) >= 1
 BuildRequires:  pkgconfig(wayland-scanner) >= 1
-
+}
 
 
 %description
@@ -35,7 +36,7 @@ HW video decode support for Intel integrated graphics.
 
 
 %prep
-%setup -q
+%autosetup -p1 -n intel-vaapi-driver-%{version}
 %{?_with_gen4asm:
 #Move pre-built (binary) asm code
 for f in src/shaders/vme/*.g?b ; do
@@ -48,12 +49,12 @@ done
 
 
 %build
-#autoreconf -vif
+autoreconf -vif
 %configure --disable-static
-make %{?_smp_mflags}
+%make_build
 
 %install
-make install DESTDIR=%{buildroot} INSTALL="install -p"
+%make_install INSTALL="install -p"
 find %{buildroot} -regex ".*\.la$" | xargs rm -f --
 
 %{?_with_gen4asm:
@@ -63,11 +64,16 @@ gendiff . .prebuilt
 
 
 %files
-%doc AUTHORS COPYING NEWS README
+%doc AUTHORS NEWS README
+%license COPYING
 %{_libdir}/dri/i965_drv_video.so
 
 
 %changelog
+
+* Thu Apr 27 2017 Pavlo Rudyi <paulcarroty at riseup.net > - 1.8.1-1
+- new source URL
+- updated to 1.8.1 (for F26 and F27)
 
 * Thu Apr 27 2017 David Vásquez <davidjeremias82 AT gmail DOT com> - 1.7.3-2
 - Rebuilt
