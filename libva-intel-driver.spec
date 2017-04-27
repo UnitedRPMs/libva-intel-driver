@@ -2,7 +2,7 @@
 
 Name:		libva-intel-driver
 Version:	1.7.3
-Release:	1%{?dist}
+Release:	2%{?dist}
 Summary:	HW video decode support for Intel integrated graphics
 Group:		System Environment/Libraries
 License:	MIT and EPL
@@ -68,6 +68,9 @@ gendiff . .prebuilt
 
 
 %changelog
+
+* Thu Apr 27 2017 David Vásquez <davidjeremias82 AT gmail DOT com> - 1.7.3-2
+- Rebuilt
 
 * Wed Dec 28 2016 Pavlo Rudyi <paulcarroty at riseup.net > - 1.7.3-1
 - Updated to 1.7.3
