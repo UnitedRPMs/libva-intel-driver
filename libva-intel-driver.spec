@@ -50,7 +50,7 @@ done
 
 %build
 autoreconf -vif
-%configure --disable-static
+%configure --disable-static --enable-hybrid-codec
 %make_build
 
 %install
@@ -70,6 +70,9 @@ gendiff . .prebuilt
 
 
 %changelog
+
+* Thu Aug 24 2017 Unitedrpms Project <unitedrpms AT protonmail DOT com> - 1.8.3-2
+- Enabled hybrid codec
 
 * Wed Jul 12 2017 Unitedrpms Project <unitedrpms AT protonmail DOT com> - 1.8.3-1
 - Updated to 1.8.3-1
