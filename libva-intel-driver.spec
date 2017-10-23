@@ -21,7 +21,7 @@ BuildRequires:	libXext-devel
 BuildRequires:	libXfixes-devel
 BuildRequires:	libdrm-devel >= 2.4.23
 BuildRequires:	libpciaccess-devel
-BuildRequires:  libva-devel >= 0.39.4
+BuildRequires:  libva-devel >= 2.0.0
 BuildRequires:	mesa-libGL-devel
 BuildRequires:	mesa-libEGL-devel
 %{!?_without_wayland:
