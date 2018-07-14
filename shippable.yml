@@ -20,7 +20,7 @@ build:
 # commands in this section run inside your CI container. In addition, any commands such as ls, in this section can be used to skip default processing #for CI.
   ci:
     # Here you'd place anything you want to test. 
-    - docker run --privileged=true --cap-add=SYS_ADMIN -v $(pwd):/root/enjoy/ davidva/unibuild /bin/sh -c "rm -f /urpms && wget -c https://raw.githubusercontent.com/kuboosoft/united-build/master/urpms && chmod a+x urpms && /urpms -g UnitedRPMs/libva-intel-driver -s libva-intel-driver.spec -t unitedrpms-29-i386 -c true"
+    - docker run --privileged=true --cap-add=SYS_ADMIN -v $(pwd):/root/enjoy/ davidva/unibuild /bin/sh -c "rm -f /urpms && wget -c https://raw.githubusercontent.com/kuboosoft/united-build/master/urpms && chmod a+x urpms && /urpms -g UnitedRPMs/libva-intel-driver -s libva-intel-driver.spec -t unitedrpms-rawhide-i386 -c true"
 notifications:
 email: davidva@tutanota.com
 # slack: unitedrpms:lzDykHTpajKrgmGz9NkrO1Hj
