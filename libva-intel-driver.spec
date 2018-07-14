@@ -1,7 +1,7 @@
 #global _with_gen4asm 1
 
 Name:		libva-intel-driver
-Version:	2.1.0
+Version:	2.2.0
 Release:	1%{?dist}
 Summary:	HW video decode support for Intel integrated graphics
 License:	MIT and EPL
@@ -70,6 +70,9 @@ gendiff . .prebuilt
 
 
 %changelog
+
+* Fri Jul 13 2018 Unitedrpms Project <unitedrpms AT protonmail DOT com> - 2.2.0-1
+- Updated to 2.2.0
 
 * Mon Feb 12 2018 Unitedrpms Project <unitedrpms AT protonmail DOT com> - 2.1.0-1
 - Updated to 2.1.0
