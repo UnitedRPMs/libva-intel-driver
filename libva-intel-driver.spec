@@ -1,13 +1,13 @@
 #global _with_gen4asm 1
 
 Name:		libva-intel-driver
-Version:	2.2.0
-Release:	7%{?dist}
+Version:	2.3.0
+Release:	1%{?dist}
 Summary:	HW video decode support for Intel integrated graphics
 License:	MIT and EPL
 URL:		https://01.org/linuxmedia
 Source0:	https://github.com/01org/intel-vaapi-driver/archive/%{version}.tar.gz#/%{name}-%{version}.tar.gz
-
+Patch0:   427.patch
 ExclusiveArch:	%{ix86} x86_64 ia64
 
 BuildRequires:	libtool
@@ -24,11 +24,10 @@ BuildRequires:	libpciaccess-devel
 BuildRequires:  libva-devel >= 2.1.0
 BuildRequires:	mesa-libGL-devel
 BuildRequires:	mesa-libEGL-devel
-%{!?_without_wayland:
 BuildRequires:  wayland-devel
 BuildRequires:  pkgconfig(wayland-client) >= 1
 BuildRequires:  pkgconfig(wayland-scanner) >= 1
-}
+
 
 
 %description
@@ -37,6 +36,7 @@ HW video decode support for Intel integrated graphics.
 
 %prep
 %autosetup -p1 -n intel-vaapi-driver-%{version}
+%patch0 -p1
 %{?_with_gen4asm:
 #Move pre-built (binary) asm code
 for f in src/shaders/vme/*.g?b ; do
@@ -70,6 +70,10 @@ gendiff . .prebuilt
 
 
 %changelog
+
+* Wed Feb 13 2018 Pavlo Rudyi <unitedrpms AT protonmail DOT com> - 2.3.0-1
+- Updated to 2.3.0
+- Patch for vaapi fix
 
 * Fri Oct 12 2018 Unitedrpms Project <unitedrpms AT protonmail DOT com> - 2.2.0-7
 - Rebuilt for libva 
