@@ -7,7 +7,7 @@ Summary:	HW video decode support for Intel integrated graphics
 License:	MIT and EPL
 URL:		https://01.org/linuxmedia
 Source0:	https://github.com/01org/intel-vaapi-driver/archive/%{version}.tar.gz#/%{name}-%{version}.tar.gz
-#Patch0:		427.patch
+Patch0:		427.patch
 ExclusiveArch:	%{ix86} x86_64 ia64
 
 BuildRequires:	libtool
