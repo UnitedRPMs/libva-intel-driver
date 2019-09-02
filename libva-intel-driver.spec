@@ -2,7 +2,7 @@
 
 Name:		libva-intel-driver
 Version:	2.3.0
-Release:	1%{?dist}
+Release:	7%{?dist}
 Summary:	HW video decode support for Intel integrated graphics
 License:	MIT and EPL
 URL:		https://01.org/linuxmedia
@@ -69,6 +69,9 @@ gendiff . .prebuilt
 
 
 %changelog
+
+* Sun Sep 01 2019 Unitedrpms Project <unitedrpms AT protonmail DOT com> - 2.3.0-7
+- Rebuilt
 
 * Wed Feb 13 2019 Pavlo Rudyi <unitedrpms AT protonmail DOT com> - 2.3.0-1
 - Updated to 2.3.0
