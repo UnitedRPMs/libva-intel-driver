@@ -1,14 +1,12 @@
 #global _with_gen4asm 1
 
 Name:		libva-intel-driver
-Version:	2.3.0
+Version:	2.4.0
 Release:	7%{?dist}
 Summary:	HW video decode support for Intel integrated graphics
 License:	MIT and EPL
 URL:		https://01.org/linuxmedia
-Source0:	https://github.com/01org/intel-vaapi-driver/archive/%{version}.tar.gz#/%{name}-%{version}.tar.gz
-Patch0:		427.patch
-ExclusiveArch:	%{ix86} x86_64 ia64
+Source0:	https://github.com/intel/intel-vaapi-driver/archive/%{version}.pre1.tar.gz#/%{name}-%{version}.tar.gz
 
 BuildRequires:	libtool
 
@@ -35,7 +33,7 @@ HW video decode support for Intel integrated graphics.
 
 
 %prep
-%autosetup -n intel-vaapi-driver-%{version} -p1
+%autosetup -n intel-vaapi-driver-%{version}.pre1 -p1
 %{?_with_gen4asm:
 #Move pre-built (binary) asm code
 for f in src/shaders/vme/*.g?b ; do
@@ -69,6 +67,9 @@ gendiff . .prebuilt
 
 
 %changelog
+
+* Tue Nov 26 2019 Unitedrpms Project <unitedrpms AT protonmail DOT com> - 2.4.0-7
+- Updated to 2.4.0-7
 
 * Sun Sep 01 2019 Unitedrpms Project <unitedrpms AT protonmail DOT com> - 2.3.0-7
 - Rebuilt
