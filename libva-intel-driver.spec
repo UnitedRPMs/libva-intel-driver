@@ -1,14 +1,17 @@
 #global _with_gen4asm 1
+# 
+%define _legacy_common_support 1
 
 Name:		libva-intel-driver
 Version:	2.4.0
-Release:	7%{?dist}
+Release:	8%{?dist}
 Summary:	HW video decode support for Intel integrated graphics
 License:	MIT and EPL
 URL:		https://01.org/linuxmedia
-Source0:	https://github.com/intel/intel-vaapi-driver/archive/%{version}.pre1.tar.gz#/%{name}-%{version}.tar.gz
+Source0:	https://github.com/intel/intel-vaapi-driver/archive/2.4.0.tar.gz#/%{name}-%{version}.tar.gz
 
 BuildRequires:	libtool
+BuildRequires:	meson
 
 #Renamed when moved to 01.org
 Provides: intel-vaapi-driver = %{version}-%{release}
@@ -33,7 +36,12 @@ HW video decode support for Intel integrated graphics.
 
 
 %prep
-%autosetup -n intel-vaapi-driver-%{version}.pre1 -p1
+%autosetup -n intel-vaapi-driver-%{version} -p1
+
+  # Only relevant if intel-gpu-tools is installed,
+  # since then the shaders will be recompiled
+  sed -i '1s/python$/&2/' src/shaders/gpp.py
+
 %{?_with_gen4asm:
 #Move pre-built (binary) asm code
 for f in src/shaders/vme/*.g?b ; do
@@ -46,12 +54,20 @@ done
 
 
 %build
+
 autoreconf -vif
-%configure --disable-static --enable-hybrid-codec
-%make_build
+
+%meson -Denable_hybrid_codec=true \
+       -Dwith_x11=yes \
+       -Dwith_wayland=yes \
+       -Denable_tests=false \
+       %{nil}
+
+%meson_build 
 
 %install
-%make_install INSTALL="install -p"
+%meson_install
+
 find %{buildroot} -regex ".*\.la$" | xargs rm -f --
 
 %{?_with_gen4asm:
@@ -67,6 +83,10 @@ gendiff . .prebuilt
 
 
 %changelog
+
+* Fri Jan 24 2020 Unitedrpms Project <unitedrpms AT protonmail DOT com> - 2.4.0-8
+- Rebuilt
+- Changed to meson
 
 * Tue Nov 26 2019 Unitedrpms Project <unitedrpms AT protonmail DOT com> - 2.4.0-7
 - Updated to 2.4.0-7
