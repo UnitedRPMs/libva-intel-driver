@@ -20,13 +20,17 @@
 %undefine _debugsource_packages
 %define _legacy_common_support 1
 
+%global commit0 d87db2111a33b157d1913415f15d201cc5182850
+%global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
+%global gver .git%{shortcommit0}
+
 Name:		libva-intel-driver
 Version:	2.4.1
-Release:	7%{?dist}
+Release:	8%{?dist}
 Summary:	HW video decode support for Intel integrated graphics
 License:	MIT and EPL
 URL:		https://01.org/linuxmedia
-Source0:	https://github.com/intel/intel-vaapi-driver/archive/%{version}.tar.gz#/%{name}-%{version}.tar.gz
+Source0:	https://github.com/intel/intel-vaapi-driver/archive/%{commit0}.tar.gz#/%{name}-%{shortcommit0}.tar.gz
 
 BuildRequires:	libtool
 BuildRequires:	meson
@@ -55,7 +59,7 @@ HW video decode support for Intel integrated graphics.
 
 
 %prep
-%autosetup -n intel-vaapi-driver-%{version} -p1
+%autosetup -n intel-vaapi-driver-%{commit0} -p1
 
   # Only relevant if intel-gpu-tools is installed,
   # since then the shaders will be recompiled
@@ -97,12 +101,17 @@ gendiff . .prebuilt
 
 
 %files
+%ifarch x86_64
 %doc AUTHORS NEWS README
 %license COPYING
+%endif
 %{_libdir}/dri/i965_drv_video.so
 
 
 %changelog
+
+* Tue Oct 27 2020 Unitedrpms Project <unitedrpms AT protonmail DOT com> - 2.4.1-8
+- Updated to current commit
 
 * Tue Jun 02 2020 Unitedrpms Project <unitedrpms AT protonmail DOT com> - 2.4.1-7
 - Updated to 2.4.1
