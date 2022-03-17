@@ -1,7 +1,7 @@
 #
 # spec file for package libva-intel-driver
 #
-# Copyright (c) 2020 UnitedRPMs.
+# Copyright (c) 2022 UnitedRPMs.
 #
 # All modifications and additions to the file contributed by third parties
 # remain the property of their copyright owners, unless otherwise agreed
@@ -20,13 +20,13 @@
 %undefine _debugsource_packages
 %define _legacy_common_support 1
 
-%global commit0 d87db2111a33b157d1913415f15d201cc5182850
+%global commit0 3ed3f6a783fdfff3fa1b567888518dcbda7eb2a3
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global gver .git%{shortcommit0}
 
 Name:		libva-intel-driver
 Version:	2.4.1
-Release:	8%{?dist}
+Release:	10%{?dist}
 Summary:	HW video decode support for Intel integrated graphics
 License:	MIT and EPL
 URL:		https://01.org/linuxmedia
@@ -109,6 +109,12 @@ gendiff . .prebuilt
 
 
 %changelog
+
+* Mon Mar 07 2022 Unitedrpms Project <unitedrpms AT protonmail DOT com> - 2.4.1-10
+- Updated to current commit
+
+* Mon Oct 04 2021 Unitedrpms Project <unitedrpms AT protonmail DOT com> - 2.4.1-9
+- Updated to current commit
 
 * Tue Oct 27 2020 Unitedrpms Project <unitedrpms AT protonmail DOT com> - 2.4.1-8
 - Updated to current commit
